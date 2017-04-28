@@ -20,6 +20,31 @@ var Body = React.createClass({
     })
   },
 
+  handleUpdate(item) {(
+    $.ajax({
+      url: `/api/v1/items/${item.id}`,
+      type: 'PUT',
+      data: {
+        item: item
+      },
+      success: () => {
+        this.updateItem(item);
+      }
+    })
+  )},
+
+  updateItems(item) {
+    var items = this.state.items.filter((i) => {
+      return i.id != item.id
+    });
+
+    items.push(item);
+
+    this.setState({
+      items: items
+    });
+  },
+
   handleDelete() {
     $.ajax({
       url: `/api/v1/items/${id}`,
@@ -44,7 +69,7 @@ var Body = React.createClass({
     return (
       <div>
         <NewItem handleSubmit={this.handleSubmit}/>
-        <AllItems items={this.state.items} handleDelete={this.handleDelete}/>
+        <AllItems items={this.state.items} onUpdate={this.handleUpdate}  handleDelete={this.handleDelete}/>
       </div>
     )
   }
