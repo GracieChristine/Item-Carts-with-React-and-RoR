@@ -38,7 +38,9 @@ gem 'jbuilder', '~> 2.5'
 # Let us apply a respond_to rule to all the actions in our controllers, making the code DRY-er.
 gem 'responders'
 
-gem 'react-rails'
+# gem 'react-rails'
+
+gem "react_on_rails", "~> 6"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
